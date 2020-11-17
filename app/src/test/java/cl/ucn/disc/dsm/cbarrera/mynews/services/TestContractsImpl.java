@@ -16,8 +16,8 @@ import com.github.javafaker.Faker;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.logging.Logger;
-import org.junit.platform.commons.logging.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -36,13 +36,14 @@ public class TestContractsImpl {
      */
     @Test
     public void testRetrieveNews(){
+        log.debug("Testing...");
         Contracts contracts = new ContractsImpl();
 
         List<News> news = contracts.retrieveNews(5);
         Assertions.assertNotNull(news,"List was null:(");
         Assertions.assertTrue(news.size() != 0,"Empty list? :(");
         Assertions.assertTrue(news.size() == 5,"List size != 5 :(");
-
+        log.debug("Done.");
     }
     /**
      * Show the faker
