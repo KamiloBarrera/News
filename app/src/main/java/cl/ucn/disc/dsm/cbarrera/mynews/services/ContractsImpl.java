@@ -17,10 +17,28 @@ import java.util.List;
 
 import cl.ucn.disc.dsm.cbarrera.mynews.model.News;
 
+/**
+ * Implementation of Contracts
+ * @author Camilo Barrera A., camilo.barrera@alumnos.ucn.cl
+ */
 public class ContractsImpl implements Contracts {
+    /**
+     * Get List of news.
+     *
+     * @param size size of the list.
+     * @return the list of news.
+     */
     @Override
     public List<News> retrieveNews(Integer size) {
         final List<News> news = new ArrayList<>();
         return news;
+    }
+
+    /**
+     * Save one news into the system.
+     * @param news to save
+     */
+    @Override
+    public void saveNews(News news) {
     }
 }
