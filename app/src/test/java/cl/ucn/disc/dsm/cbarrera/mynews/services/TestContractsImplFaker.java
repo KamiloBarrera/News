@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.threeten.bp.ZoneId;
+import org.threeten.bp.ZonedDateTime;
 
 import java.util.List;
 
@@ -48,7 +50,7 @@ public final class TestContractsImplFaker {
 
         Assertions.assertEquals(3,contracts.retrieveNews(3).size(),"List != 3");
 
-        Assertions.assertTrue(contracts.retrieveNews(10).size() <= 10,"List != 10");
+        Assertions.assertTrue(contracts.retrieveNews(10).size() < 10,"List != 10");
 
         log.debug("Done.");
     }
@@ -58,11 +60,21 @@ public final class TestContractsImplFaker {
         final Faker faker = Faker.instance();
         Contracts contracts = new ContractsImplFaker();
         List<News> theNews = contracts.retrieveNews(5);
-        News news = null;
-        theNews.add(news);
-        Assertions.assertThrows(IllegalArgumentException.class,()->{Integer.parseInt("One");
-        });
+        News news = new News(
+                Integer.toUnsignedLong(theNews.size()),
+                faker.book().title(),
+                faker.name().username(),
+                faker.name().fullName(),
+                faker.internet().url(),
+                faker.internet().avatar(),
+                faker.harryPotter().quote(),
+                faker.lorem().paragraph(3),
+                ZonedDateTime.now(ZoneId.of("-3")));
+        contracts.saveNews(news);
+        Assertions.assertEquals(6,contracts.retrieveNews(6).size(),"List != 6");
+        News newNews = null;
+        //TODO: Check this Assertions
+        Assertions.assertThrows(IllegalArgumentException.class,()->{contracts.saveNews(newNews);},"The news is null :(");
         log.debug("Done.");
-
     }
 }
