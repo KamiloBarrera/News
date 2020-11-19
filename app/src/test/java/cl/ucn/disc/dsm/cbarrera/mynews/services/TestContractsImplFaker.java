@@ -12,7 +12,10 @@
 
 package cl.ucn.disc.dsm.cbarrera.mynews.services;
 
+import com.github.javafaker.Faker;
+
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +26,7 @@ import cl.ucn.disc.dsm.cbarrera.mynews.model.News;
 public final class TestContractsImplFaker {
     private static final Logger log = LoggerFactory.getLogger((TestContractsImplFaker.class));
 
+    @Test
     public void testRetrieveNews(){
         log.debug("Testing  ...");
 
@@ -48,5 +52,17 @@ public final class TestContractsImplFaker {
 
         log.debug("Done.");
     }
+    @Test
+    public void testSaveNews(){
+        log.debug("Testing  ...");
+        final Faker faker = Faker.instance();
+        Contracts contracts = new ContractsImplFaker();
+        List<News> theNews = contracts.retrieveNews(5);
+        News news = null;
+        theNews.add(news);
+        Assertions.assertThrows(IllegalArgumentException.class,()->{Integer.parseInt("One");
+        });
+        log.debug("Done.");
 
+    }
 }
