@@ -69,6 +69,9 @@ public final class ContractsImplFaker implements Contracts{
     @Override
     public List<News> retrieveNews(Integer size) {
         // The last "size" elements.
+        if(size > theNews.size()){
+            size = theNews.size();
+        }
         return theNews.subList(theNews.size()-size,theNews.size());
     }
 
@@ -80,6 +83,10 @@ public final class ContractsImplFaker implements Contracts{
     @Override
     public void saveNews(News news) {
         // FIXME: Don't allow duplicated !!
+
+        if(news == null){
+            throw new IllegalArgumentException();
+        }
         this.theNews.add(news);
     }
 }
