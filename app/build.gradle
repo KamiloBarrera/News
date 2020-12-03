@@ -64,4 +64,13 @@ dependencies {
     // Java Faker
 
     implementation 'com.github.javafaker:javafaker:1.0.2'
+
+    // Apache Commons Lang
+    implementation 'org.apache.commons:commons-lang3:3.11'
+
+    //Zero-Allocation-Hashing
+    implementation 'net.openhft:zero-allocation-hashing:0.12'
+
+    //NewsAPI
+    implementation "com.github.KwabenBerko:News-API-Java:1.0.0"
 }
