@@ -85,7 +85,7 @@ public final class ContractsImplFaker implements Contracts{
         // FIXME: Don't allow duplicated !!
 
         if(news == null){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Can't create news null");
         }
         this.theNews.add(news);
     }
