@@ -12,7 +12,11 @@
 
 package cl.ucn.disc.dsm.cbarrera.mynews.model;
 
+import net.openhft.hashing.LongHashFunction;
+
 import org.threeten.bp.ZonedDateTime;
+
+import cl.ucn.disc.dsm.cbarrera.mynews.util.Validation;
 
 /**
  * The domain model: News
@@ -69,14 +73,30 @@ public class News {
      * @param publishedAt
      */
     public News(Long id, String title, String source, String author, String url, String urlImage, String description, String content, ZonedDateTime publishedAt) {
-        this.id = id;
+        //Validation of Title
+        Validation.minSize(title,2,"title");
         this.title = title;
+
+        //Validation of Source
+        Validation.minSize(source,2,"source");
         this.source = source;
+
+        //Validation of Author
+        Validation.minSize(author,2,"author");
         this.author = author;
+
+        //Apply hash function
+        this.id = LongHashFunction.xx().hashChars(title + source + author);
+
+
         this.url = url;
         this.urlImage = urlImage;
         this.description = description;
+
+        Validation.notNull(content,"Content");
         this.content = content;
+
+        Validation.notNull(publishedAt,"PublishedAt");
         this.publishedAt = publishedAt;
     }
 
