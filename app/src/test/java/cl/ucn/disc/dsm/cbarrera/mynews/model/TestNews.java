@@ -24,6 +24,7 @@ public final class TestNews {
      */
     private static final Logger log = LoggerFactory.getLogger(TestNews.class);
     public void testContructor() {
+
         log.debug("Testing...");
         News news = new News(
                 "The Tittle",
@@ -35,31 +36,39 @@ public final class TestNews {
                 "The Content",
                 ZonedDateTime.now(ZoneId.of("-3"))
         );
-        log.debug("The id: {}.", news.getId());
 
+        log.debug("The id: {}.", news.getId());
         Assertions.assertEquals(1182003507361219134L, news.getId(), "Wrong Id !");
+
         log.debug("Title null ..");
-        Assertions.assertThrows(IllegalArgumentException.class, () - (new News(
-                null,
-                "The Source", "The Author",
-                "The URL",
-                "The URL Image",
-                "The Description",
-                "The Content",
-                ZonedDateTime.now(ZoneId.of("-3"))
-        )));
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{
+            new News(
+                    null,
+                    "The Source", "The Author",
+                    "The URL",
+                    "The URL Image",
+                    "The Description",
+                    "The Content",
+                    ZonedDateTime.now(ZoneId.of("-3"))
+            );
+        });
+
         log.debug("Source null ...");
-        Assertions.assertThrows(IllegalArgumentException.class, () - (new News(
-                "The title",
-                null, "The Author",
-                "The URL",
-                "The URL Image",
-                "The Description",
-                "The Content",
-                ZonedDateTime.now(ZoneId.of("-3"))
-        )));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new News(
+                    "The title",
+                    null, "The Author",
+                    "The URL",
+                    "The URL Image",
+                    "The Description",
+                    "The Content",
+                    ZonedDateTime.now(ZoneId.of("-3"))
+            );
+        });
+
         log.debug("Author null ...");
-        Assertions.assertThrows(IllegalArgumentException.class, () - (new News(
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                new News(
                 "The title",
                 "The Source", null,
                 "The URL",
@@ -67,10 +76,11 @@ public final class TestNews {
                 "The Description",
                 "The Content",
                 ZonedDateTime.now(ZoneId.of("-3"))
-        )));
+        );});
 
         log.debug("Description null...");
-        Assertions.assertThrows(IllegalArgumentException.class,() -(new News(
+        Assertions.assertThrows(IllegalArgumentException.class,() ->{
+            new News(
                 "The title",
                 "The Source","The Author",
                 "The URL",
@@ -78,10 +88,11 @@ public final class TestNews {
                 null,
                 "The Content",
                 ZonedDateTime.now(ZoneId.of("-3"))
-        )));
+        );});
 
         log.debug("Content null...");
-        Assertions.assertThrows(IllegalArgumentException.class,() -(new News(
+        Assertions.assertThrows(IllegalArgumentException.class,() ->{
+                new News(
                 "The title",
                 "The Source","The Author",
                 "The URL",
@@ -89,18 +100,20 @@ public final class TestNews {
                 "The Description",
                 null,
                 ZonedDateTime.now(ZoneId.of("-3"))
-        )));
+        );});
 
         log.debug("PublishedAt null...");
-        Assertions.assertThrows(IllegalArgumentException.class,() -(new News(
-                "The title",
-                "The Source","The Author",
-                "The URL",
-                "The URL Image",
-                "The Description",
-                "The Content",
-                null
-        )));
+        Assertions.assertThrows(IllegalArgumentException.class,() ->{
+            new News(
+                    "The title",
+                    "The Source","The Author",
+                    "The URL",
+                    "The URL Image",
+                    "The Description",
+                    "The Content",
+                    null
+            );
+        });
 
         log.debug("... Done!");
     }
