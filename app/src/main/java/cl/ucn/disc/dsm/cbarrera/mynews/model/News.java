@@ -22,55 +22,54 @@ import cl.ucn.disc.dsm.cbarrera.mynews.util.Validation;
  * The domain model: News
  * @author Camilo Barrera A., camilo.barrera@alumnos.ucn.cl
  */
-public class News {
+public final class News {
     /**
      * Unique id.
      */
-    private Long id;
+    private final Long id;
     /**
      * The title.
      */
-    private String title;
+    private final String title;
     /**
      * Source of the news.
      */
-    private String source;
+    private final String source;
     /**
      * The author
      */
-    private String author;
+    private final String author;
     /**
      * The URL
      */
-    private String url;
+    private final String url;
     /**
      * The URL of the image
      */
-    private String urlImage;
+    private final String urlImage;
     /**
      * The description
      */
-    private String description;
+    private final String description;
     /**
      * The content
      */
-    private String content;
+    private final String content;
     /**
      * The Date of publish
      */
-    private ZonedDateTime publishedAt;
+    private final ZonedDateTime publishedAt;
 
     /**
      * The constructor
-     * @param id
-     * @param title
-     * @param source
-     * @param author
-     * @param url
-     * @param urlImage
-     * @param description
-     * @param content
-     * @param publishedAt
+     * @param title     can't be null.
+     * @param source    can't be null.
+     * @param author    can't be null.
+     * @param url       to the main article.
+     * @param urlImage  to the image
+     * @param description   -full article
+     * @param content   can't be null.
+     * @param publishedAt   can't be null.
      */
     public News(String title, String source, String author, String url, String urlImage, String description, String content, ZonedDateTime publishedAt) {
         //Validation of Title
@@ -86,11 +85,13 @@ public class News {
         this.author = author;
 
         //Apply hash function
-        this.id = LongHashFunction.xx().hashChars(title + source + author);
+        this.id = LongHashFunction.xx().hashChars(title +"|" +source +"|"+ author);
 
 
         this.url = url;
         this.urlImage = urlImage;
+
+        Validation.minSize(description,10,"description");
         this.description = description;
 
         Validation.notNull(content,"Content");
