@@ -66,7 +66,7 @@ public final class ContractsImplNewsApi implements Contracts{
 
         //fix the author null
         if (article.getAuthor() == null) {
-            article.getAuthor("No author*");
+            article.setAuthor("No author");
             needFix = true;
         }
 
