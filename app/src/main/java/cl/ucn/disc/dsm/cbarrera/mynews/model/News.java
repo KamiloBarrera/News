@@ -72,7 +72,7 @@ public class News {
      * @param content
      * @param publishedAt
      */
-    public News(Long id, String title, String source, String author, String url, String urlImage, String description, String content, ZonedDateTime publishedAt) {
+    public News(String title, String source, String author, String url, String urlImage, String description, String content, ZonedDateTime publishedAt) {
         //Validation of Title
         Validation.minSize(title,2,"title");
         this.title = title;
